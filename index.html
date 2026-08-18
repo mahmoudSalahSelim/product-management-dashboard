@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <div class="container py-5">
+      <!-- Dashboard -->
+      <section class="dashbord mb-5">
+        <h1 class="text-center fw-bold mb-4">Dashboard</h1>
+        <div class="row g-3">
+          <div class="col-lg-4 col-md-6">
+            <div class="card h-100 text-center rounded-4 shadow">
+              <div class="card-body p-4">
+                <h5 class="card-title">Products</h5>
+                <p id="products" class="card-text fs-2 fw-bold mb-0"></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="card h-100 text-center rounded-4 shadow">
+              <div class="card-body p-4">
+                <h5 class="card-title">Categories</h5>
+                <p id="categories" class="card-text fs-2 fw-bold mb-0"></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="card h-100 text-center rounded-4 shadow">
+              <div class="card-body p-4">
+                <h5 class="card-title">Total Value</h5>
+                <p id="totalValue" class="card-text fs-2 fw-bold mb-0"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Products -->
+      <section class="Products">
+        <div class="row g-4">
+          <!-- Form -->
+          <div class="col-lg-4">
+            <div class="inpts p-4 rounded-4 h-100">
+              <div id="error-msg" class="error-msg d-none text-center mb-3">
+                <p class="text-white mb-0"></p>
+              </div>
+              <label for="proName" class="form-label">Product Name:</label>
+              <input
+                id="proName"
+                name="proName"
+                type="text"
+                class="form-control mb-3"
+                required
+              />
+              <label for="proPrice" class="form-label">Product Price:</label>
+              <input
+                id="proPrice"
+                name="proPrice"
+                type="number"
+                class="form-control mb-3"
+                required
+              />
+              <label for="proCat" class="form-label">Product Category:</label>
+              <input
+                id="proCat"
+                name="proCat"
+                type="text"
+                class="form-control mb-3"
+                required
+              />
+              <label for="proDesc" class="form-label">Product Desc:</label>
+              <input
+                id="proDesc"
+                name="proDesc"
+                type="text"
+                class="form-control mb-3"
+                required
+              />
+              <button id="addBtn" class="btn btn-primary w-100 mt-2">
+                Add Product
+              </button>
+            </div>
+          </div>
+          <!-- Table -->
+          <div class="col-lg-8">
+            <div class="tabel-container p-4 rounded-4 h-100">
+              <div class="row g-3 mb-4">
+                <div class="col-md-8">
+                  <label for="proSearch" class="form-label"> Search: </label>
+                  <input
+                    id="proSearch"
+                    name="proSearch"
+                    type="text"
+                    class="form-control"
+                    placeholder="Search..."
+                  />
+                </div>
+                <div class="col-md-4">
+                  <label for="sort" class="form-label"> Sort By: </label>
+                  <select id="sort" name="sort" class="form-select">
+                    <option value="name">Name</option>
+                    <option value="price">Price</option>
+                    <option value="category">Category</option>
+                  </select>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="table text-center align-middle mb-0">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Name</th>
+                      <th>Price</th>
+                      <th>Category</th>
+                      <th>Description</th>
+                      <th>Update</th>
+                      <th>Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>
