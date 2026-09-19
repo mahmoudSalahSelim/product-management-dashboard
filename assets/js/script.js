@@ -59,6 +59,7 @@ function add() {
 // ==========================================
 // Update total products count badge
 function productsLength(arr) {
+  if (arr.length === 0) arr = [];
   products.innerHTML = arr.length;
 }
 
@@ -70,16 +71,14 @@ function categoriesLength(arr) {
       category.push(arr[i].cat);
     }
   }
+  if (category.length === 0) category = [];
   categories.innerHTML = category.length;
 }
 
 // Calculate and display total price sum
 function totalValue(arr) {
-  let tolalPrice = 0;
-  for (let i = 0; i < arr.length; i++) {
-    tolalPrice += Number(arr[i].price);
-  }
-  total.innerHTML = `$${tolalPrice}`;
+let totalPrice = arr.reduce((acc, item) => acc + Number(item.price || 0), 0);
+  total.innerHTML = `$${totalPrice.toFixed(2)}`;
 }
 
 // ==========================================
