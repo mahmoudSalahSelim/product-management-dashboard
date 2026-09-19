@@ -1,3 +1,6 @@
+/* ========================================== */
+/* CSS Custom Properties (Theme Design Tokens)*/
+/* ========================================== */
 :root {
   --bg: #050b24;
   --surface: #111d3a;
@@ -9,6 +12,9 @@
   --border: #243456;
 }
 
+/* ========================================== */
+/* Global / Base Body Styles                  */
+/* ========================================== */
 body {
   min-height: 100vh;
   color: var(--text);
@@ -17,7 +23,9 @@ body {
     linear-gradient(135deg, var(--bg), #0b1533);
 }
 
-/* Cards */
+/* ========================================== */
+/* Glassmorphism Containers & Cards           */
+/* ========================================== */
 .card,
 .inpts,
 .tabel-container {
@@ -25,49 +33,56 @@ body {
   background: #111d3ae6;
   border: 1px solid var(--border) !important;
   backdrop-filter: blur(10px);
-  transition: .25s;
+  transition: 0.25s;
 }
 
+/* Hover Lift Effect for Dashboard Cards */
 .card:hover {
   transform: translateY(-4px);
   border-color: var(--primary-light) !important;
 }
 
-/* Headings */
+/* ========================================== */
+/* Typography & Headings                      */
+/* ========================================== */
+/* Gradient Text Effect for Main Title */
 .dashbord h1 {
   background: linear-gradient(90deg, #fff, #a99aff);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
 }
-
 .card-title { color: var(--muted); }
 
-/* Inputs */
+/* ========================================== */
+/* Form Controls & Custom Inputs              */
+/* ========================================== */
 .form-control,
 .form-select {
   color: var(--text);
   background: var(--surface-2);
   border-color: #2a3a5f;
 }
-
 .form-control::placeholder { color: #707b96; }
 
+/* Input Focus Glow & Border Highlighting */
 .form-control:focus,
 .form-select:focus {
   color: var(--text);
   background: var(--surface-2);
   border-color: var(--primary-light);
-  box-shadow: 0 0 0 .2rem #7c5cff20;
+  box-shadow: 0 0 0 0.2rem #7c5cff20;
 }
 
-/* Select */
+/* Select Dropdown Options Styling */
 .form-select option {
   color: var(--text);
   background: var(--surface);
 }
 
-/* Button */
+/* ========================================== */
+/* Buttons & Interactive Elements             */
+/* ========================================== */
 #addBtn {
   border: 0;
   background: linear-gradient(135deg, #4f46e5, #7c3aed);
@@ -78,7 +93,9 @@ body {
   box-shadow: 0 8px 25px #5b3df555;
 }
 
-/* Table */
+/* ========================================== */
+/* Dynamic Data Table Overrides               */
+/* ========================================== */
 .table {
   --bs-table-bg: transparent;
   --bs-table-color: var(--muted);
@@ -89,12 +106,14 @@ body {
   background: #24345688;
   border: 0;
 }
-
 .table td { border-color: #30426866; }
 
-.table tbody tr:hover td { background: #5b3df512; }
+/* Table Row Hover Highlight */
+.table tbody tr:hover td { background: #5b3df512;}
 
-/* Error */
+/* ========================================== */
+/* Alert Messages & Status Indicators         */
+/* ========================================== */
 .error-msg {
   padding: 10px;
   border-radius: 10px;
@@ -102,5 +121,11 @@ body {
   border: 1px solid #ef4b6c55;
 }
 
-/* Mobile */
-@media (max-width: 991px) { .table-responsive { overflow-x: auto; } }
+/* ========================================== */
+/* Responsive Layout Adjustments              */
+/* ========================================== */
+@media (max-width: 991px) {
+  .table-responsive {
+    overflow-x: auto;
+  }
+}

@@ -1,21 +1,30 @@
+// ==========================================
+// DOM Element Selectors
+// ==========================================
 let proName = document.getElementById("proName");
 let proPrice = document.getElementById("proPrice");
 let proDesc = document.getElementById("proDesc");
 let proCat = document.getElementById("proCat");
 let addBtn = document.getElementById("addBtn");
 let search = document.getElementById("proSearch");
-let currentIndex;
-let productscontainer = [];
 let categories = document.getElementById("categories");
-let total= document.getElementById("totalValue");
+let total = document.getElementById("totalValue");
 let products = document.getElementById("products");
 
+let currentIndex;
+let productscontainer = [];
+
+// Hide validation error message when user types in any input field
 [proName, proPrice, proCat, proDesc].forEach(function (input) {
   input.addEventListener("input", function () {
     document.getElementById("error-msg").classList.add("d-none");
   });
 });
 
+// ==========================================
+// LocalStorage Initialization
+// ==========================================
+// Load saved products from LocalStorage on page load
 if (localStorage.getItem("products") !== null) {
   productscontainer = JSON.parse(localStorage.getItem("products"));
   displayProducts();
@@ -26,6 +35,10 @@ if (localStorage.getItem("products") !== null) {
   productscontainer = [];
 }
 
+// ==========================================
+// Main Action Handler (Add / Edit Router)
+// ==========================================
+// Check validation and decide whether to add a new product or edit an existing one
 function add() {
   if (!validateProduct()) {
     document.getElementById("error-msg").classList.remove("d-none");
@@ -33,6 +46,7 @@ function add() {
   } else {
     document.getElementById("error-msg").classList.add("d-none");
   }
+
   if (addBtn.innerHTML === "update Product") {
     editprocut();
   } else {
@@ -40,10 +54,15 @@ function add() {
   }
 }
 
+// ==========================================
+// Statistics & Counter Functions
+// ==========================================
+// Update total products count badge
 function productsLength(arr) {
   products.innerHTML = arr.length;
 }
 
+// Calculate and display unique categories count
 function categoriesLength(arr) {
   let category = [];
   for (let i = 0; i < arr.length; i++) {
@@ -54,6 +73,7 @@ function categoriesLength(arr) {
   categories.innerHTML = category.length;
 }
 
+// Calculate and display total price sum
 function totalValue(arr) {
   let tolalPrice = 0;
   for (let i = 0; i < arr.length; i++) {
@@ -62,6 +82,10 @@ function totalValue(arr) {
   total.innerHTML = `$${tolalPrice}`;
 }
 
+// ==========================================
+// CRUD Operations
+// ==========================================
+// Add a new product
 function addProduct() {
   let product = {
     name: proName.value,
@@ -69,10 +93,10 @@ function addProduct() {
     desc: proDesc.value,
     cat: proCat.value,
   };
-  //   console.log(product);
+
   productscontainer.push(product);
-  //   console.log(productscontainer);
   localStorage.setItem("products", JSON.stringify(productscontainer));
+
   clearProducts();
   displayProducts();
   productsLength(productscontainer);
@@ -80,6 +104,7 @@ function addProduct() {
   categoriesLength(productscontainer);
 }
 
+// Clear input form fields
 function clearProducts() {
   proName.value = "";
   proPrice.value = "";
@@ -87,6 +112,7 @@ function clearProducts() {
   proCat.value = "";
 }
 
+// Render all products into the table body
 function displayProducts() {
   let data = "";
   for (let i = 0; i < productscontainer.length; i++) {
@@ -103,6 +129,7 @@ function displayProducts() {
   document.getElementById("tableBody").innerHTML = data;
 }
 
+// Delete a product by index
 function deleteProduct(index) {
   productscontainer.splice(index, 1);
   localStorage.setItem("products", JSON.stringify(productscontainer));
@@ -112,6 +139,7 @@ function deleteProduct(index) {
   categoriesLength(productscontainer);
 }
 
+// Populate form fields with selected product data for editing
 function updateProduct(index) {
   currentIndex = index;
   proName.value = productscontainer[index].name;
@@ -121,25 +149,33 @@ function updateProduct(index) {
   addBtn.innerHTML = "update Product";
 }
 
+// Save updated product details
 function editprocut() {
   productscontainer[currentIndex].name = proName.value;
   productscontainer[currentIndex].price = proPrice.value;
   productscontainer[currentIndex].desc = proDesc.value;
   productscontainer[currentIndex].cat = proCat.value;
+
   clearProducts();
   addBtn.innerHTML = "Add Product";
   localStorage.setItem("products", JSON.stringify(productscontainer));
+
   displayProducts();
   productsLength(productscontainer);
   totalValue(productscontainer);
   categoriesLength(productscontainer);
 }
 
+// ==========================================
+// Search & Validation
+// ==========================================
+// Live search input listener
 search.addEventListener("input", function () {
   let trim = search.value;
   searchProduct(trim);
 });
 
+// Filter products table by product name
 function searchProduct(trim) {
   let tableData = "";
   for (let i = 0; i < productscontainer.length; i++) {
@@ -160,6 +196,7 @@ function searchProduct(trim) {
   document.getElementById("tableBody").innerHTML = tableData;
 }
 
+// Validate that no inputs are empty
 function validateProduct() {
   if (
     proName.value.trim() === "" ||
@@ -168,10 +205,11 @@ function validateProduct() {
     proDesc.value.trim() === ""
   ) {
     return false;
-  } 
+  }
   return true;
 }
 
+// Trigger main add/edit function on button click
 addBtn.addEventListener("click", function () {
   add();
 });
