@@ -8,7 +8,7 @@ A modern, responsive, dark-themed Product Management Dashboard designed for mana
 
 ## 🚀 Live Demo
 
-🌐 **Live Demo:** [View Live Application](https://mahmoudsalah-dev.github.io/product-management-dashboard/)
+🌐 **Live Demo:** [View Live Application](https://mahmoudsalahselim.github.io/product-management-dashboard/)
 
 ---
 
